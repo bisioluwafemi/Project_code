@@ -1,0 +1,253 @@
+---
+title: "Data Problems"
+author: "Data Analysis & Visualization"
+date: "2024-03-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# PROBLEM 1
+
+# Description
+
+In response to pressure from federal and state agencies to monitor school effectiveness in the United States, the National Center of Education Statistics (NCES) of the U.S. Department of Education conducted a survey in the spring of 1988, the National Education Longitudinal Study (NELS). The participants consisted of a nationally representative sample of approximately 25,000 eighth graders to measure achievement outcomes in four core subject areas (English, history, mathematics, and science), in addition to personal, familial, social, institutional, and cultural factors that might relate to these outcomes. Details on the design and initial analysis of this survey may be referenced in Horn, Hafner, and Owings (1992). A follow-up of these students was conducted during tenth grade in the spring of 1990; a second follow-up was conducted during the twelfth grade in the spring of 1992; and, finally, a third follow-up was conducted in the spring of 1994.
+
+# summary of the variables of the data
+1. Id: Student ID
+2. case number: Case number
+3. advmath8: Indicator for whether advanced math was taken in eighth grade
+4. urban: Urbanicity, a measure of the type of environment in which the student lives
+5. region: Geographic region of school
+6. gender: Student's gender
+7. famsize: Student's family size
+8. parmarl8: Parents' marital status in eighth grade
+9. homelang: Home language background
+10. slfcnc08, slfcnc10, slfcnc12: Self-concept in eighth, tenth, and twelfth grade respectively
+11. schtyp8: School type in eighth grade
+12. tcherint: Likert-scale variable classifying student agreement with the statement, "My teachers are interested in students"
+13. late12: Number of times late for school in twelfth grade
+14. cuts12: Number of times skipped/cut classes in twelfth grade
+15. absent12: Number of times student missed school in twelfth grade
+16. approg: Indicator for whether advanced placement program was taken
+17. hwkin12: Time spent on homework weekly in school per week in twelfth grade
+18. hwkout12: Time spent on homework out of school per week in twelfth grade
+19. excurr12: Time spent weekly on extracurricular activities in twelfth grade, in hours
+20. computer: Indicator for whether computer is owned by family in eighth grade
+21. hsprog: Type of high school program
+22. unitengl, unitmath, unitcalc: Units in English, mathematics, and calculus respectively
+23. schattrt: School average daily attendance rate
+24. apoffer: Number of advanced placement courses offered by school
+25. nursery: Indicator for whether nursery school attended
+26. algebra8: Indicator for whether algebra was taken in eighth grade
+27. numinst: Number of post-secondary institutions attended
+28. edexpect: Highest level of education expected
+29. expinc30: Expected income at age 30, in dollars
+30. achrdg08, achmat08, achsci08, achsls08: Reading, math, science, and social studies achievement in eighth grade respectively
+31. achrdg10, achmat10, achsci10, achsls10: Reading, math, science, and social studies achievement in tenth grade respectively
+32. achrdg12, achmat12, achsci12, achsls12: Reading, math, science, and social studies achievement in twelfth grade respectively
+33. cigarett: Indicator for whether smoked cigarettes ever
+34. alcbinge: Indicator for whether ever binged on alcohol
+35. marijuan: Indicator for whether smoked marijuana ever
+36. ses: Socioeconomic status score, ranging from 0 to 35, and given as a composite of father's education level, mother's education level, father's occupation, mother's education, and family income.
+
+# Details
+this data contain some selected sub-sample of 500 cases and 48 variables. The cases were sampled randomly from the approximately 5,000 students who responded to all four administrations of the survey, who were always at grade level (neither repeated nor skipped a grade), and who pursued some form of post-secondary education. The particular variables were selected to explore the relationships between student and home background variables, self-concept, educational and income aspirations, academic motivation, risk-taking behavior, and academic achievement.
+
+
+# Method of analysis and objectives
+
+the objective of this problem is to test whether time spent on homework out of school per week in Grade 12 affects student’s math, science, and reading achievement scores and their self-concept in Grade 12 and the method of analysis used is called Regression analysis.
+
+# Research question
+which of the two groups, those who spent fewer than 4 hours on homework per week out of school at Grade 12 and those who spent 4 or more hours has significant effect on student’s math, science, and reading achievement scores and their self-concept in Grade 12?
+
+# Research hypothesis
+null hypothesis: the two groups has no significant effect on student’s math, science, and reading achievement scores and their self-concept in Grade 12
+Alternate hypothesis: the two groups has significant effect on student’s math, science, and reading achievement scores and their self-concept in Grade 12
+
+```{r Question1}
+library(sur)
+#Load the NELS data
+data("NELS")
+head(NELS)
+
+summary(NELS)
+str(NELS)
+class(NELS$hwkout12)
+
+# convert homework out of school per week in Grade 12 to numeric
+NELS$hwkout12 <- as.numeric(NELS$hwkout12)
+
+group1 <- subset(NELS,hwkout12 < 4)
+group2 <- subset(NELS,hwkout12 >= 4)
+
+#Regression analysis
+reg1 <- lm(hwkout12~achrdg12+achmat12+achsci12+slfcnc12,group1)
+summary(reg1)
+reg2 <- lm(hwkout12~achrdg12+achmat12+achsci12+slfcnc12,group2)
+summary(reg2)
+```
+
+
+
+# Interpretation
+the first group which is those who spent fewer than 4 hours on homework per week out of school at Grade 12 has a positive effect on dependent variable which are Reading, math achievement in twelfth grade and their self-concept in Grade 12 respectively while a negative effect on science achievement in twelfth grade. the second group which are those who spent 4 or more hours on homework out of school per week in twelfth grade has a positive effect on dependent variable which are Reading, math, science  achievement in twelfth grade and their self-concept in Grade 12 respectively. the second group show that the model explains the independent variable by 85% while the first group shows that the model explain the model by 78%.
+
+# Deduction
+we can deduce from the P-value of both groups that the second group has a p-value (6.859e-07) less than 0.05, which implies that the null hypothesis is rejected and conclude that there exist significant effect on student’s math, science, and reading achievement scores and their self-concept in Grade 12 for students who spent 4 or more hours on homework out of school per week in twelfth grade while the first group shows an acceptance of the null hypothesis since the p-value(0.2699) is greater than 0.05, then we conclude that there exist no significant effect on student’s math, science, and reading achievement scores and their self-concept in Grade 12 for students who spent fewer than 4 hours on homework per week out of school at Grade 12. this shows that the more time the student in grade 12 spent on homework per week is a determining factor to their  achievement scores and their self-concept.
+
+
+# PROBLEM 2
+
+# Description
+
+State-level data on optiate related deaths in the US, from the CDC Wonder database. Query details: Dataset is Multiple causes of death, 1999-2014; 2006 Urbanization; Autopsy, Gender, Place of Death, States, 10-year age groups, and Hisipanic Origin, Weekday, Year/Month set to ALL. Standard Population 2000 US Std Population. Default intercensal populations for years 2001-2009 except Infant age groups. Rates per 100,000 population.
+
+# summary of the variables of the data
+
+•	year. Year
+•	state. State name.
+•	fips. State FIPS code.
+•	deaths. Number of opiate-related deaths.
+•	population. Population.
+•	crude. Crude death rate.
+•	adjusted. Adjusted death rate.
+•	adjusted.se. Standard error of Adjusted death rate.
+•	region. Census region. (Stored as an ordered factor.)
+•	abbr. Abbreviated state name.
+•	division_name. Census Division. (Character.)
+
+# Objective
+
+the objective of the problem is to show and discuss the overall trend of adjusted opiates-related death rate by states in the South region.
+
+
+```{r Question2}
+library(socviz)
+library(dplyr)
+library(ggplot2)
+
+# Load the opiates dataset
+data(opiates)
+
+str(opiates)
+# Subset data to include only states in the South region
+south_states <- c("Alabama", "Arkansas", "Delaware", "Florida", "Georgia", 
+                  "Kentucky", "Louisiana", "Maryland", "Mississippi", 
+                  "North Carolina", "Oklahoma", "South Carolina", 
+                  "Tennessee", "Texas", "Virginia", "West Virginia")
+
+opiates_south <- opiates %>%
+  filter(state %in% south_states)
+
+# Calculate adjusted opiates-related death rate for each state
+opiates_south <- opiates_south %>%
+  mutate(AdjRate = (deaths / population) * 100000)
+
+# Compute the average trend for the South region
+avg_trend_south <- opiates_south %>%
+  group_by(year) %>%
+  summarise(AvgAdjRate = mean(AdjRate))
+
+# Compute the national average trend
+avg_trend_national <- opiates %>%
+  group_by(year) %>%
+  summarise(AvgAdjRate = mean(deaths) / mean(population) * 100000)
+
+# Plotting
+ggplot() +
+  geom_line(data = avg_trend_south, aes(x = year, y = AvgAdjRate, color = "South"), size = 1.5) +
+  geom_line(data = avg_trend_national, aes(x = year, y = AvgAdjRate, color = "National"), size = 1.5, linetype = "dashed") +
+  labs(title = "Adjusted Opiates-related Death Rate by Year (South Region vs National)",
+       x = "Year", y = "Adjusted Death Rate (per 100,000 population)",
+       color = "Region") +
+  theme_minimal()
+
+```
+
+
+# INTERPRATION
+
+the graph shows a steep increase in death rates in the south region which implies that death rate increase from one year to another in the south region which is almost the same experience in the National. this shows that the south region are more affected corresponding to the National.
+
+
+
+#PROBLEM 3
+
+# Description
+Data consists of specific Part I crimes (murder, rape, robbery, aggravated assault, burglary, theft, auto theft and arson) and Part II crimes (all other offenses) that would be of major concern to residents. Data provided represents only calls for police service where a formal, written report was made and does not include other calls for police service that did not result in a written report.
+
+# Objective
+
+the objective of the problem is to Show the crime counts by the four violent crime types for each year from 2011 to 2021 for these two neighborhoods provide a summary of your observation based on the graph. 
+
+
+```{r Question3}
+# Load the necessary libraries
+library(dplyr)
+library(lubridate)
+
+#import dataset
+crime <- read.csv("C:/Users/DELL 7300/Downloads/APDcrime2011_2022.csv")
+View(crime)
+str(crime)
+# Load the necessary libraries
+
+crime$Report.Date <- as.Date(crime$Report.Date,format = "%m/%d/%Y")
+
+
+crime <- crime%>% mutate(year = year(as.Date(Report.Date)))
+View(crime)
+# Filter the data for the year 2021 and violent crime types
+violent_crimes_2021 <- crime %>%
+  filter(year == 2021 & UC2_Literal %in% c("AGG ASSAULT", "ROBBERY", "BURGLARY", "HOMICIDE"))
+unique(crime$UC2_Literal)
+View(violent_crimes_2021)
+# Summarize the total violent crime counts for each neighborhood
+neighborhood_crime_counts <- violent_crimes_2021 %>%
+  group_by(Neigborhood) %>%
+  summarise(Total_Crime_Count = n()) %>%
+  arrange(desc(Total_Crime_Count))
+
+# Identify the neighborhoods ranked #1 and #10
+neighborhoods_ranked_1_and_10 <- neighborhood_crime_counts %>%
+  filter(row_number() == 1 | row_number() == 10)
+
+# Show the crime counts by the four violent crime types for each year from 2011 to 2021
+crime_counts_by_year <- crime %>%
+  filter(Neigborhood %in% neighborhoods_ranked_1_and_10$Neigborhood & year >= 2011 & year <= 2021 & UC2_Literal %in% c("AGG ASSAULT", "ROBBERY", "BURGLARY", "HOMICIDE")) %>% group_by(Neigborhood, year, UC2_Literal) %>%
+  summarise(Total_Crime_Count = n(), .groups = "drop")
+
+View(crime_counts_by_year)
+
+
+# Print the crime counts by year for the two identified neighborhoods
+print(crime_counts_by_year)
+
+
+# Create a graph to visualize the crime counts over the years for the two neighborhoods
+crime_counts_plot <- ggplot(data = crime_counts_by_year, aes(x = year, y = Total_Crime_Count, color = UC2_Literal)) +
+  geom_line() +
+  facet_wrap(~ Neigborhood) +
+  labs(title = "Crime Counts by Violent Crime Types",
+       x = "Year",
+       y = "Total Crime Count",
+       color = "Crime Type") +
+  theme_minimal()
+
+# Print the graph
+print(crime_counts_plot)
+
+
+```
+
+
+
+
+
+# Summary
+
+the graph shows violent rate in two neighborhood which are Downtown and Oakland city. the graph shows that downtown experience more of Agg assault increases while experience low rate of Homicide, burglary and robbery while in Oakland city, there is low rate of crime rate.
