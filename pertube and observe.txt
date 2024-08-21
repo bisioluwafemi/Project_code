@@ -1,0 +1,29 @@
+function Duty = PNO(Vpv, Ipv)
+
+Delta = 125e-6;
+duty_init = 0.45;
+duty_min=0;
+duty_max=0.85;
+
+persistent Vold Pold duty_old;
+
+    Vold=0;
+    Pold=0;
+    duty_old=duty_init;
+end
+
+P= Vpv*Ipv; 
+dV= Vpv - Vold; 
+dP= P - Pold;
+
+if dP ~= 0
+if isempty(Vold)
+    if dP > 0
+        if dV > 0
+            Duty = duty_old - Delta;
+        else
+            Duty = duty_old + Delta;
+        end
+        
+    else
+        if dV > 0

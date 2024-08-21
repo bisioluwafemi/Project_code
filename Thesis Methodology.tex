@@ -1,0 +1,514 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\title{BAYESIAN SPATIAL MODELS OF GAMMA-LOG-LOGISTIC DISTRIBUTION AND GAMMA-SKEW-LOGISTIC DISTRIBUTION: APPLICATION ON MEDICAL 
+ STUDIES}
+\author{Bisiriyu Oluwafemi Lawal}
+\date{July 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+
+\section{Literature Review}
+
+
+\section{Methodology}
+
+\section*{Maximum Likelihood Estimation for Gamma Distribution}
+
+Let:
+\begin{itemize}
+    \item $\alpha$ be the shape parameter.
+    \item $\beta$ be the rate parameter.
+\end{itemize}
+
+Given a sample of $n$ independent and identically distributed observations $x_1, x_2, \ldots, x_n$ from a Gamma distribution, the probability density function (PDF) of the Gamma distribution is given by:
+\[
+f(x; \alpha, \beta) = \frac{\beta^\alpha x^{\alpha-1} e^{-\beta x}}{\Gamma(\alpha)}, \quad x > 0
+\]
+
+\subsection*{Likelihood Function}
+
+\[
+L(\alpha, \beta; x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} f(x_i; \alpha, \beta) = \prod_{i=1}^{n} \frac{\beta^\alpha x_i^{\alpha-1} e^{-\beta x_i}}{\Gamma(\alpha)}
+\]
+
+\[
+L(\alpha, \beta; x_1, x_2, \ldots, x_n) = \frac{\beta^{n\alpha} \left( \prod_{i=1}^{n} x_i^{\alpha-1} \right) e^{-\beta \sum_{i=1}^{n} x_i}}{\Gamma(\alpha)^n}
+\]
+
+\subsection*{Log-Likelihood Function}
+
+
+\[
+\ell(\alpha, \beta; x_1, x_2, \ldots, x_n) = \ln L(\alpha, \beta; x_1, x_2, \ldots, x_n)
+\]
+\[
+\ell(\alpha, \beta; x_1, x_2, \ldots, x_n) = n\alpha \ln \beta + (\alpha-1) \sum_{i=1}^{n} \ln x_i - \beta \sum_{i=1}^{n} x_i - n \ln \Gamma(\alpha)
+\]
+
+\subsection*{Partial Derivatives}
+
+\subsubsection*{Derivative with respect to $\alpha$}
+
+\[
+\frac{\partial \ell}{\partial \alpha} = n \ln \beta + \sum_{i=1}^{n} \ln x_i - n \frac{\Gamma'(\alpha)}{\Gamma(\alpha)}
+\]
+Set $\frac{\partial \ell}{\partial \alpha} = 0$:
+\[
+n \ln \beta + \sum_{i=1}^{n} \ln x_i - n \frac{\Gamma'(\alpha)}{\Gamma(\alpha)} = 0
+\]
+\[
+\ln \beta + \frac{1}{n} \sum_{i=1}^{n} \ln x_i = \frac{\Gamma'(\alpha)}{\Gamma(\alpha)}
+\]
+
+\subsubsection*{Derivative with respect to $\beta$}
+
+\[
+\frac{\partial \ell}{\partial \beta} = \frac{n\alpha}{\beta} - \sum_{i=1}^{n} x_i
+\]
+Set $\frac{\partial \ell}{\partial \beta} = 0$:
+\[
+\frac{n\alpha}{\beta} = \sum_{i=1}^{n} x_i
+\]
+\[
+\hat{\beta} = \frac{n\alpha}{\sum_{i=1}^{n} x_i}
+\]
+
+\subsection*{Solving the Equations}
+
+The equation involving $\alpha$ is typically solved numerically because $\frac{\Gamma'(\alpha)}{\Gamma(\alpha)}$, also known as the digamma function $\psi(\alpha)$, is not easily invertible analytically. 
+
+\[
+\psi(\alpha) = \ln \hat{\beta} + \frac{1}{n} \sum_{i=1}^{n} \ln x_i
+\]
+
+Once $\alpha$ is estimated, we then use it to find $\beta$:
+
+
+
+\section*{Maximum Likelihood Estimation for Log-Logistic Distribution}
+
+Let:
+\begin{itemize}
+    \item $\alpha$ be the scale parameter.
+    \item $\beta$ be the shape parameter.
+\end{itemize}
+
+Given a sample of $n$ independent and identically distributed observations $x_1, x_2, \ldots, x_n$ from a log-logistic distribution, the probability density function (PDF) of the log-logistic distribution is given by:
+\[
+f(x; \alpha, \beta) = \frac{\left(\frac{\beta}{\alpha}\right) \left(\frac{x}{\alpha}\right)^{\beta-1}}{\left[1 + \left(\frac{x}{\alpha}\right)^{\beta}\right]^2}, \quad x > 0
+\]
+
+\subsection*{Likelihood Function}
+
+The likelihood function for the sample is the product of the individual PDFs:
+\[
+L(\alpha, \beta; x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} f(x_i; \alpha, \beta)
+\]
+
+Substituting the PDF:
+\[
+L(\alpha, \beta; x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} \frac{\left(\frac{\beta}{\alpha}\right) \left(\frac{x_i}{\alpha}\right)^{\beta-1}}{\left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^2}
+\]
+
+\subsection*{Log-Likelihood Function}
+
+\[
+\ell(\alpha, \beta; x_1, x_2, \ldots, x_n) = \ln L(\alpha, \beta; x_1, x_2, \ldots, x_n)
+\]
+
+\[
+\ell(\alpha, \beta; x_1, x_2, \ldots, x_n) = \sum_{i=1}^{n} \ln \left[ \frac{\beta}{\alpha} \left(\frac{x_i}{\alpha}\right)^{\beta-1} \left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^{-2} \right]
+\]
+
+Simplifying the logarithm:
+\[
+\ell(\alpha, \beta; x_1, x_2, \ldots, x_n) = n \ln \beta - n \ln \alpha + (\beta-1) \sum_{i=1}^{n} \ln \left(\frac{x_i}{\alpha}\right) - 2 \sum_{i=1}^{n} \ln \left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]
+\]
+
+\[
+\ell(\alpha, \beta; x_1, x_2, \ldots, x_n) = n \ln \beta - n \ln \alpha + (\beta-1) \sum_{i=1}^{n} (\ln x_i - \ln \alpha) - 2 \sum_{i=1}^{n} \ln \left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]
+\]
+
+\subsection*{Partial Derivatives}
+
+
+\subsubsection*{Derivative with respect to $\alpha$}
+
+\[
+\frac{\partial \ell}{\partial \alpha} = -\frac{n}{\alpha} - (\beta-1) \sum_{i=1}^{n} \frac{1}{\alpha} + 2 \sum_{i=1}^{n} \frac{\beta x_i^\beta \alpha^{-\beta-1}}{1 + \left(\frac{x_i}{\alpha}\right)^{\beta}}
+\]
+
+Set $\frac{\partial \ell}{\partial \alpha} = 0$.
+
+\subsubsection*{Derivative with respect to $\beta$}
+
+\[
+\frac{\partial \ell}{\partial \beta} = \frac{n}{\beta} + \sum_{i=1}^{n} \ln \left(\frac{x_i}{\alpha}\right) - 2 \sum_{i=1}^{n} \frac{\left(\frac{x_i}{\alpha}\right)^{\beta} \ln \left(\frac{x_i}{\alpha}\right)}{1 + \left(\frac{x_i}{\alpha}\right)^{\beta}}
+\]
+
+Set $\frac{\partial \ell}{\partial \beta} = 0$.
+
+\subsection*{Solving the Equations}
+
+The equations involving $\alpha$ and $\beta$ are typically solved numerically because they are non-linear and complex. Iterative methods such as the Newton-Raphson method was furtherly used to estimate $\alpha$ and $\beta$.
+
+
+\[
+\begin{aligned}
+\frac{d \log L}{d \alpha} = \frac{1}{(\beta - 1)} \left[ \beta \left( \frac{x[1]}{\alpha} \right)^{\beta - 1} - \frac{\beta (\beta - 1) \left( \frac{x[1]}{\alpha} \right)^{\beta - 1}}{\left( 1 + \left( \frac{x[1]}{\alpha} \right)^{\beta} \right)^2} \right] - \frac{2 \beta \left( \frac{x[1]}{\alpha} \right)^{2 \beta - 1}}{\alpha^2 \left( 1 + \left( \frac{x[1]}{\alpha} \right)^{\beta} \right)^2} \\
+&+ \frac{2 \beta (\beta - 1) \left( \frac{x[1]}{\alpha} \right)^{2 \beta - 1}}{\alpha^2 \left( 1 + \left( \frac{x[1]}{\alpha} \right)^{\beta} \right)^3} = 0 \\
+\end{aligned}
+\]
+
+\[
+\frac{d \log L}{d \beta} = \frac{1}{(\beta - 1)} \left[ \beta \left( \frac{x[1]}{\alpha} \right)^{\beta - 1} \right] - \frac{\beta (\beta - 1) \left( \frac{x[1]}{\alpha} \right)^{\beta - 1} \ln \left( \frac{x[1]}{\alpha} \right)}{\left( 1 + \left( \frac{x[1]}{\alpha} \right)^{\beta} \right)^2} + \frac{\beta \left( \frac{x[1]}{\alpha} \right)^{\beta - 1} \ln \left( \frac{x[1]}{\alpha} \right)}{\left( 1 + \left( \frac{x[1]}{\alpha} \right)^{\beta} \right)^2}
+\]
+
+\[
+- \frac{2 \beta (\beta - 1) \left( \frac{x[1]}{\alpha} \right)^{\beta - 1} \ln \left( \frac{x[1]}{\alpha} \right)}{\alpha \left( 1 + \left( \frac{x[1]}{\alpha} \right)^{\beta} \right)^3} = 0
+\]
+
+\subsection*{Perform Second Derivatives}
+
+d2logL_dalpha2 = \frac{\partial^2 \log L}{\partial \alpha^2} := \frac{\partial}{\partial \alpha} \left( \frac{\partial \log L}{\partial \alpha} \right);
+
+d2logL_dbeta2 = \frac{\partial^2 \log L}{\partial \beta^2} := \frac{\partial}{\partial \beta} \left( \frac{\partial \log L}{\partial \beta} \right);
+
+d2logL_dalphabeta = \frac{\partial^2 \log L}{\partial \alpha \partial \beta} := \frac{\partial}{\partial \beta} \left( \frac{\partial \log L}{\partial \alpha} \right);
+
+\[
+\begin{aligned}
+\frac{\partial^2 \log L}{\partial \alpha^2} := -\beta \cdot \frac{2\beta\left(\frac{x[1]}{\alpha}\right)^\beta + 4\beta\left(\frac{x[1]}{\alpha}\right)^{2\beta} + 2\beta\left(\frac{x[1]}{\alpha}\right)^{3\beta} - 2\left(\frac{x[1]}{\alpha}\right)^\beta + 2\left(\frac{x[1]}{\alpha}\right)^{3\beta} + \left(\frac{x[1]}{\alpha}\right)^{4\beta} - 1}{\alpha^2\left(1 + \left(\frac{x[1]}{\alpha}\right)^\beta\right)^4}
+\]
+
+\[
+\frac{\partial \log L}{\partial \beta} := \frac{-(\frac{x[1]}{\alpha})^{2\beta} \beta \ln(\frac{x[1]}{\alpha}) - (\frac{x[1]}{\alpha})^{3\beta} \beta \ln(\frac{x[1]}{\alpha}) + (\frac{x[1]}{\alpha})^\beta \beta \ln(\frac{x[1]}{\alpha}) + \beta \ln(\frac{x[1]}{\alpha}) + 3(\frac{x[1]}{\alpha})^{2\beta} + (\frac{x[1]}{\alpha})^{3\beta} + 3(\frac{x[1]}{\alpha})^\beta + 1}{\beta (1 + (\frac{x[1]}{\alpha})^\beta)^3}
+\]
+
+\[
+\frac{\partial^2 \log L}{\partial \alpha \partial \beta} := \frac{2x[1] \ln(x[1]) + x[1]^2 - 1}{(1 + x[1])^2}
+\]
+
+\end{align*}
+
+
+\subsection*{Perform Newton Raphson}
+
+\begin{aligned}
+
+\[
+\text{grad\_alpha} := \left( -\frac{1}{(1 + x[1])^2} + \frac{2x[1]}{(1 + x[1])^3} \right) (1 + x[1])^2
+\]
+
+\[
+\text{grad\_beta} := \frac{-x[1]^2 \ln(x[1]) - \ln(x[1]) x[1]^3 + x[1] \ln(x[1]) + \ln(x[1]) + 3 x[1]^2 + x[1]^3 + 3 x[1] + 1}{(1 + x[1])^3}
+\]
+
+\[
+\text{hess\_beta2} := \left( \frac{2 \ln(x)}{(1 + x)^2} - \frac{4 x \ln(x)}{(1 + x)^3} + \frac{\ln(x)^2}{(1 + x)^2} - \frac{6 \ln(x)^2 x}{(1 + x)^3} + \frac{6 x^2 \ln(x)^2}{(1 + x)^4} \right) (1 + x)^2 - \left( \frac{1}{(1 + x)^2} + \frac{\ln(x)}{(1 + x)^2} - \frac{2 x \ln(x)}{(1 + x)^3} \right) (1 + x)^2 \\
+- \left( \frac{1}{(1 + x)^2} + \frac{\ln(x)}{(1 + x)^2} - \frac{2 x \ln(x)}{(1 + x)^3} \right) (1 + x)^2 \ln(x) + 2 \left( \frac{1}{(1 + x)^2} + \frac{\ln(x)}{(1 + x)^2} - \frac{2 x \ln(x[1])}{(1 + x)^3} \right) (1 + x) x \ln(x)
+\]
+
+\[
+\text{hess\_alphabeta} := \frac{2 x[1] \ln(x[1]) + x[1]^2 - 1}{(1 + x[1])^2}
+\]
+
+\begin{equation}
+\text{Hessian} =
+\begin{pmatrix}
+ -\frac{x[1]^4 + 4 x[1]^3 + 4 x[1]^2 - 1}{(1 + x[1])^4} & \frac{2 x[1] \ln(x[1]) + x[1]^2 - 1}{(1 + x[1])^2} \\
+\frac{2 x[1] \ln(x[1]) + x[1]^2 - 1}{(1 + x[1])^2} & \left( \frac{2 \ln(x[1])}{(1 + x[1])^2} - \frac{4 x[1] \ln(x[1])}{(1 + x[1])^3} + \frac{\ln(x[1])^2}{(1 + x[1])^2} - \frac{6 \ln(x[1])^2 x[1]}{(1 + x[1])^3} + \frac{6 x[1]^2 \ln(x[1])^2}{(1 + x[1])^4} \right) (1 + x[1])^2 \\
+& \quad - \left( \frac{1}{(1 + x[1])^2} + \frac{\ln(x[1])}{(1 + x[1])^2} - \frac{2 x[1] \ln(x[1])}{(1 + x[1])^3} \right) (1 + x[1])^2 \\
+& \quad - \left( \frac{1}{(1 + x[1])^2} + \frac{\ln(x[1])}{(1 + x[1])^2} - \frac{2 x[1] \ln(x[1])}{(1 + x[1])^3} \right) (1 + x[1])^2 \ln(x[1]) \\
+& \quad + 2 \left( \frac{1}{(1 + x[1])^2} + \frac{\ln(x[1])}{(1 + x[1])^2} - \frac{2 x[1] \ln(x[1])}{(1 + x[1])^3} \right) (1 + x[1]) x[1] \ln(x[1])
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+\text{Gradient} =
+\begin{pmatrix}
+\left(-\frac{1}{(1 + x[1])^2} + \frac{2 x[1]}{(1 + x[1])^3}\right) (1 + x[1])^2 \\
+\frac{-x[1]^2 \ln(x[1]) - \ln(x[1]) x[1]^3 + x[1] \ln(x[1]) + \ln(x[1]) + 3 x[1]^2 + x[1]^3 + 3 x[1] + 1}{(1 + x[1])^3}
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+\text{Params} =
+\begin{pmatrix}
+1 + \frac{\left(2 \ln(x_{1})^{2} x_{1} + x_{1}^{2} + 2 x_{1} + 1\right) (1 + x_{1})^{3} \left(-\frac{1}{(1 + x_{1})^{2}} + \frac{2 x_{1}}{(1 + x_{1})^{3}}\right)}{2 x_{1}^{2} \ln(x_{1})^{2} - 2 \ln(x_{1})^{2} x_{1} - 4 x_{1}^{2} \ln(x_{1}) + 4 x_{1} \ln(x_{1}) + 4 x_{1}^{2} + 2 x_{1} - 2} \\
+1 + \frac{\left(2 x_{1} \ln(x_{1}) + x_{1}^{2} - 1\right) (1 + x_{1})^{3} \left(-\frac{1}{(1 + x_{1})^{2}} + \frac{2 x_{1}}{(1 + x_{1})^{3}}\right)}{2 x_{1}^{2} \ln(x_{1})^{2} - 2 \ln(x_{1})^{2} x_{1} - 4 x_{1}^{2} \ln(x_{1}) + 4 x_{1} \ln(x_{1}) + 4 x_{1}^{2} + 2 x_{1} - 2}
+\end{pmatrix}
+\end{equation}
+
+\[
+\alpha = 1 + \frac{\left(2 \ln(x_{1})^{2} x_{1} + x_{1}^{2} + 2 x_{1} + 1\right) (1 + x_{1})^{3} \left(-\frac{1}{(1 + x_{1})^{2}} + \frac{2 x_{1}}{(1 + x_{1})^{3}}\right)}{2 \left(x_{1}^{2} \ln(x_{1})^{2} - \ln(x_{1})^{2} x_{1} - 2 x_{1}^{2} \ln(x_{1}) + 2 x_{1} \ln(x_{1}) + 2 x_{1}^{2} + x_{1} - 1\right)} + \frac{\left(2 x_{1} \ln(x_{1}) + x_{1}^{2} - 1\right) \left(-x_{1}^{2} \ln(x_{1}) - \ln(x_{1}) x_{1}^{3} + x_{1} \ln(x_{1}) + \ln(x_{1}) + 3 x_{1}^{2} + x_{1}^{3} + 3 x_{1} + 1\right)}{2 \left(1 + x_{1}\right)^{2} \left(x_{1}^{2} \ln(x_{1})^{2} - \ln(x_{1})^{2} x_{1} - 2 x_{1}^{2} \ln(x_{1}) + 2 x_{1} \ln(x_{1}) + 2 x_{1}^{2} + x_{1} - 1\right)}
+\]
+
+
+\[
+\beta = 1 + \frac{\left(2 x_{1} \ln(x_{1}) + x_{1}^{2} - 1\right) (1 + x_{1})^{3} \left(-\frac{1}{(1 + x_{1})^{2}} + \frac{2 x_{1}}{(1 + x_{1})^{3}}\right)}{2 \left(x_{1}^{2} \ln(x_{1})^{2} - \ln(x_{1})^{2} x_{1} - 2 x_{1}^{2} \ln(x_{1}) + 2 x_{1} \ln(x_{1}) + 2 x_{1}^{2} + x_{1} - 1\right)} + \frac{\left(x_{1}^{3} + 3 x_{1}^{2} + x_{1} - 1\right) \left(-x_{1}^{2} \ln(x_{1}) - \ln(x_{1}) x_{1}^{3} + x_{1} \ln(x_{1}) + \ln(x_{1}) + 3 x_{1}^{2} + x_{1}^{3} + 3 x_{1} + 1\right)}{2 \left(x_{1}^{2} \ln(x_{1})^{2} - \ln(x_{1})^{2} x_{1} - 2 x_{1}^{2} \ln(x_{1}) + 2 x_{1} \ln(x_{1}) + 2 x_{1}^{2} + x_{1} - 1\right) (1 + x_{1})^{3}}
+\]
+
+\end{aligned}
+
+
+
+\section*{Derivation of Posterior Distribution}
+
+Let:
+\begin{itemize}
+    \item $\alpha$ be the scale parameter of the log-logistic distribution.
+    \item $\beta$ be the shape parameter of the log-logistic distribution (fixed).
+    \item $\lambda$ be the parameter of the Gamma prior distribution.
+\end{itemize}
+
+\subsection*{Prior Distribution}
+
+Assume the prior for $\alpha$ is a Gamma distribution with parameters $k$ (shape) and $\theta$ (scale):
+\[
+p(\alpha) = \frac{\alpha^{k-1} e^{-\alpha/\theta}}{\theta^k \Gamma(k)}, \quad \alpha > 0
+\]
+
+\subsection*{Likelihood Function}
+
+The likelihood function for $n$ independent observations $x_1, x_2, \ldots, x_n$ from a log-logistic distribution with parameters $\alpha$ and $\beta$ is:
+\[
+p(x_i | \alpha) = \frac{\left(\frac{\beta}{\alpha}\right) \left(\frac{x_i}{\alpha}\right)^{\beta-1}}{\left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^2}
+\]
+Therefore, the joint likelihood for all observations is:
+\[
+L(\alpha; x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} \frac{\left(\frac{\beta}{\alpha}\right) \left(\frac{x_i}{\alpha}\right)^{\beta-1}}{\left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^2}
+\]
+
+\subsection*{Posterior Distribution}
+
+Using Bayes' theorem, the posterior distribution is proportional to the product of the prior and the likelihood:
+\[
+p(\alpha | x_1, x_2, \ldots, x_n) \propto p(\alpha) \cdot L(\alpha; x_1, x_2, \ldots, x_n)
+\]
+
+Substituting the expressions for the prior and likelihood, we get:
+\[
+p(\alpha | x_1, x_2, \ldots, x_n) \propto \left( \frac{\alpha^{k-1} e^{-\alpha/\theta}}{\theta^k \Gamma(k)} \right) \cdot \left( \prod_{i=1}^{n} \frac{\left(\frac{\beta}{\alpha}\right) \left(\frac{x_i}{\alpha}\right)^{\beta-1}}{\left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^2} \right)
+\]
+
+Simplifying the expression inside the product:
+\[
+p(\alpha | x_1, x_2, \ldots, x_n) \propto \alpha^{k-1} e^{-\alpha/\theta} \cdot \left( \frac{\beta^n}{\alpha^n} \prod_{i=1}^{n} \left(\frac{x_i}{\alpha}\right)^{\beta-1} \right) \cdot \left( \prod_{i=1}^{n} \left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^{-2} \right)
+\]
+
+\[
+p(\alpha | x_1, x_2, \ldots, x_n) \propto \beta^n \left( \prod_{i=1}^{n} x_i^{\beta-1} \right) \alpha^{k-1-n-(\beta-1)n} e^{-\alpha/\theta} \cdot \left( \prod_{i=1}^{n} \left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^{-2} \right)
+\]
+
+\subsection*{Simplified Posterior}
+
+Combining the powers of $\alpha$:
+\[
+p(\alpha | x_1, x_2, \ldots, x_n) \propto \beta^n \left( \prod_{i=1}^{n} x_i^{\beta-1} \right) \alpha^{k-1-n\beta} e^{-\alpha/\theta} \cdot \left( \prod_{i=1}^{n} \left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^{-2} \right)
+\]
+
+The posterior distribution is not a standard distribution due to the product term \( \prod_{i=1}^{n} \left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^{-2} \).
+
+The actual posterior distribution derived manually do not have a simple closed form. sampling techniques (e.g., Markov Chain Monte Carlo) will be  used to work with the posteriors.
+
+\section*{Maximum Likelihood Estimation for Skew-Logistic Distribution}
+
+
+
+\[
+f(x) = \frac{2\kappa}{1 + \kappa^2} \begin{cases}
+\frac{e^{-\frac{x}{\kappa \beta}}}{\beta(1+e^{-\frac{x}{\kappa \beta}})^2}, & \text{if } x < 0 \\
+\frac{e^{-\frac{x \kappa}{\beta}}}{\beta(1+e^{-\frac{x \kappa}{\beta}})^2}
+, & \text{if } x \geq 0.
+\end{cases}
+\]
+
+\[
+f(\( x^-_i \)) =\frac{2\kappa}{1 + \kappa^2} \cdot \frac{e^{-\frac{x}{\kappa \beta}}}{\beta(1 + e^{-\frac{x}{\kappa \beta}})^2}, \quad \text{if } x < 0
+\]
+
+\[
+f(\( x^+_i \)) = \frac{2\kappa}{1 + \kappa^2} \cdot \frac{e^{-\frac{x \kappa}{\beta}}}{\beta(1+e^{-\frac{x \kappa}{\beta}})^2}, \quad \text{if } x \geq 0
+\]
+
+The likelihood \( L \) for a random sample \( x = (x_1, x_2, \ldots, x_n) \) from the Skew Logistic Distribution (SLD) with parameters \( \kappa \) and \( \beta \) is given by:
+\[
+f(\( x^-_i \),\( x^+_i \)) = \frac{2\kappa}{\beta(1 + \kappa^2)} \prod_{i=1}^{n} \frac{e^{-\frac{x^-}{\kappa \beta}}}{(1 + e^{-\frac{x^-}{\kappa \beta}})^2} \cdot \frac{e^{-\frac{\kappa x^+}{\beta}}}{(1 + e^{-\frac{\kappa x^+}{\beta}})^2}
+\]
+
+
+
+where:\\
+
+\( x^-_i \) denotes the negative part of \( x_i \), i.e., \( x^-_i = \max(-x_i, 0) \).\\
+
+\( x^+_i \) denotes the positive part of \( x_i \), i.e., \( x^+_i = \max(x_i, 0) \).\\
+
+This likelihood function \( L \) encapsulates the probability density function of the Skew Logistic Distribution for the observed sample \( x \).
+
+
+
+\subsubsection{Taking the Logarithms}
+\begin{equation}
+l = n \log(\kappa) - n \log(1 + \kappa^2) - n \log(\beta) + 2n \log(2) - \frac{1}{\kappa \beta} \sum_{i=1}^{n} x^-_i - \frac{\kappa}{\beta} \sum_{i=1}^{n} x^+_i - \frac{2}{n} \sum_{i=1}^{n} \log\left(1 + e^{-\frac{x^-_i}{\kappa \beta}}\right) 
+- \frac{2}{n} \sum_{i=1}^{n} \log\left(1 + e^{-\frac{\kappa x^+_i}{\beta}}\right).
+\end{equation}
+
+Differentiating the log-likelihood defined above partially w.r.t.\(\kappa\) and \(\beta\), we get
+
+\[
+\frac{\partial l}{\partial \kappa} = \frac{n}{\kappa} - \frac{2 \kappa n}{1 + \kappa^2} + \frac{1}{\kappa^2 \beta} \sum_{i=1}^{n} x^-_i - \frac{1}{\beta} \sum_{i=1}^{n} x^+_i - \frac{2}{\kappa^2 \beta} \sum_{i=1}^{n} \frac{x^-_i e^{-\frac{x^-_i}{\kappa \beta}}}{1 + e^{-\frac{x^-_i}{\kappa \beta}}} + \frac{2}{\beta} \sum_{i=1}^{n} \frac{x^+_i e^{-\frac{\kappa x^+_i}{\beta}}}{1 + e^{-\frac{\kappa x^+_i}{\beta}}}.
+\]
+
+\[
+\frac{\partial l}{\partial \beta} = -\frac{n}{\beta} + \frac{1}{\beta^2} \sum_{i=1}^{n} \frac{x^-_i}{\kappa} + \frac{\kappa}{\beta^2} \sum_{i=1}^{n} \frac{x^+_i}{\beta} - \frac{2}{\kappa \beta^2} \sum_{i=1}^{n} \frac{x^-_i e^{-\frac{x^-_i}{\kappa \beta}}}{1 + e^{-\frac{x^-_i}{\kappa \beta}}} - \frac{2\kappa}{\beta^2} \sum_{i=1}^{n} \frac{x^+_i e^{-\frac{\kappa x^+_i}{\beta}}}{1 + e^{-\frac{\kappa x^+_i}{\beta}}}.
+\]
+
+The maximum likelihood estimates of \(\kappa\) and \(\beta\) was estimated  by solving the above two log-likelihood equations using numerical methods by searching for the global maximum on the log-likelihood surface.
+
+
+\[
+\kappa_{\max} = \text{optimize}\left(\frac{1}{\kappa} - \frac{2\kappa}{\kappa^2 + 1} + \frac{x^-_1}{\kappa^2 \beta} - \frac{x^+_1}{\beta} - \frac{2 x^-_1 \exp\left(-\frac{x^-_1}{\kappa \beta}\right)}{\kappa^2 \beta \left(1 + \exp\left(-\frac{x^-_1}{\kappa \beta}\right)\right)} + \frac{2 x^+_1 \exp\left(-\frac{\kappa x^+_1}{\beta}\right)}{\beta \left(1 + \exp\left(-\frac{\kappa x^+_1}{\beta}\right)\right)}, \{\kappa = 0.1 .. 10\}, \text{maximize}\right)
+\]
+
+\[
+\beta_{\max} = \text{optimize}\left(-\frac{1}{\beta} + \frac{x^-_1}{\kappa \beta^2} + \frac{\kappa x^+_1}{\beta^2} - \frac{2 x^-_1 \exp\left(-\frac{x^-_1}{\kappa \beta}\right)}{\kappa \beta^2 \left(1 + \exp\left(-\frac{x^-_1}{\kappa \beta}\right)\right)} - \frac{2 \kappa x^+_1 \exp\left(-\frac{\kappa x^+_1}{\beta}\right)}{\beta^2 \left(1 + \exp\left(-\frac{\kappa x^+_1}{\beta}\right)\right)}, \{\beta = 0.1 .. 10\}, \text{maximize}\right)
+\]
+
+
+
+\subsection{Derivation of the Posterior Distribution}
+
+
+To Estimate the posterior distribution of parameters \( \kappa \) and \( \beta \) given a random sample \( x = (x_1, x_2, \ldots, x_n) \) from the Skew Logistic Distribution (SLD), using Bayes' theorem. The prior distribution for \( \kappa \) and \( \beta \) will be assumed to be independent Gamma distributions. Let's denote the prior distributions as follows:
+
+\[ \kappa \sim \text{Gamma}(\alpha_{\kappa}, \lambda_{\kappa}) \]
+\[ \beta \sim \text{Gamma}(\alpha_{\beta}, \lambda_{\beta}) \]
+
+Given the likelihood function \( L \) for the Skew Logistic Distribution:
+
+\[ L(\kappa, \beta \mid x) = \frac{2\kappa}{\beta(1 + \kappa^2)} \prod_{i=1}^{n} \frac{e^{-\frac{x^-_i}{\kappa \beta}}}{(1 + e^{-\frac{x^-_i}{\kappa \beta}})^2} \cdot \frac{e^{-\frac{\kappa x^+_i}{\beta}}}{(1 + e^{-\frac{\kappa x^+_i}{\beta}})^2} \]
+
+The posterior distribution \( \pi(\kappa, \beta \mid x) \) is proportional to the product of the likelihood and the prior distributions:
+
+\[ \pi(\kappa, \beta \mid x) \propto L(\kappa, \beta \mid x) \cdot \pi(\kappa) \cdot \pi(\beta) \]
+
+Substituting the expressions for the likelihood and the priors:
+
+\[ \pi(\kappa, \beta \mid x) \propto \frac{2\kappa}{\beta(1 + \kappa^2)} \prod_{i=1}^{n} \frac{e^{-\frac{x^-_i}{\kappa \beta}}}{(1 + e^{-\frac{x^-_i}{\kappa \beta}})^2} \cdot \frac{e^{-\frac{\kappa x^+_i}{\beta}}}{(1 + e^{-\frac{\kappa x^+_i}{\beta}})^2} \cdot \frac{\lambda_{\kappa}^{\alpha_{\kappa}}}{\Gamma(\alpha_{\kappa})} \kappa^{\alpha_{\kappa} - 1} e^{-\lambda_{\kappa} \kappa} \cdot \frac{\lambda_{\beta}^{\alpha_{\beta}}}{\Gamma(\alpha_{\beta})} \beta^{\alpha_{\beta} - 1} e^{-\lambda_{\beta} \beta} \]
+
+Therefore, the posterior distribution \( \pi(\kappa, \beta \mid x) \) is given by:
+
+\[ \pi(\kappa, \beta \mid x) = \frac{2\kappa}{\beta(1 + \kappa^2)} \prod_{i=1}^{n} \frac{e^{-\frac{x^-_i}{\kappa \beta}}}{(1 + e^{-\frac{x^-_i}{\kappa \beta}})^2} \cdot \frac{e^{-\frac{\kappa x^+_i}{\beta}}}{(1 + e^{-\frac{\kappa x^+_i}{\beta}})^2} \cdot \frac{\lambda_{\kappa}^{\alpha_{\kappa}}}{\Gamma(\alpha_{\kappa})} \kappa^{\alpha_{\kappa} - 1} e^{-\lambda_{\kappa} \kappa} \cdot \frac{\lambda_{\beta}^{\alpha_{\beta}}}{\Gamma(\alpha_{\beta})} \beta^{\alpha_{\beta} - 1} e^{-\lambda_{\beta} \beta} \]
+
+This expression provides the posterior distribution of \( \kappa \) and \( \beta \) given the observed sample \( x \) from the Skew Logistic Distribution and the specified Gamma prior distributions for \( \kappa \) and \( \beta \).
+
+\subsection{Bayesian Spatial Model}
+
+
+
+\section*{Bayesian Framework for Log-Logistic Distribution with Spatial Parameters}
+
+\subsection*{Model Specification}
+
+Consider a spatially indexed dataset \( \{(x_i, s_i) : i = 1, 2, \ldots, n\} \) where \( x_i \) represents the observed data and \( s_i \) represents the spatial location for observation \( i \). We assume that \( x_i \) follows a log-logistic distribution parameterized by a spatially varying scale parameter \( \beta(s_i) \) and a shape parameter \( \alpha \).
+
+The probability density function (pdf) of the log-logistic distribution is given by:
+\[
+f(x_i \mid \alpha, \beta(s_i)) = \frac{(\alpha / \beta(s_i)) (x_i / \beta(s_i))^{\alpha - 1}}{(1 + (x_i / \beta(s_i))^\alpha)^2}
+\]
+
+\subsection*{Prior Distributions}
+
+assign gamma priors to the parameters \( \alpha \) and \( \beta(s_i) \):
+\[
+\alpha \sim \text{Gamma}(\alpha_0, \lambda_0)
+\]
+\[
+\beta(s_i) \sim \text{Gamma}(\beta_0, \tau_0)
+\]
+
+\subsection*{Spatial Model for Scale Parameter}
+
+incorporate spatial dependence in the scale parameter \( \beta(s_i) \) using a Conditional Autoregressive (CAR) model. Let \( \beta = (\beta(s_1), \beta(s_2), \ldots, \beta(s_n)) \) be the vector of scale parameters for all spatial locations. The CAR model is specified as:
+\[
+\beta \sim \text{CAR}(\mu_\beta, \Sigma_\beta)
+\]
+where \( \mu_\beta \) is the mean vector and \( \Sigma_\beta \) is the spatial covariance matrix defined by the adjacency structure of the spatial locations.
+
+\subsection*{Posterior Distribution}
+
+The posterior distribution of the parameters given the data is proportional to the product of the likelihood and the prior distributions:
+\[
+\pi(\alpha, \beta \mid x, s) \propto \left( \prod_{i=1}^{n} \frac{(\alpha / \beta(s_i)) (x_i / \beta(s_i))^{\alpha - 1}}{(1 + (x_i / \beta(s_i))^\alpha)^2} \right) \cdot \left( \frac{\lambda_0^{\alpha_0}}{\Gamma(\alpha_0)} \alpha^{\alpha_0 - 1} e^{-\lambda_0 \alpha} \right) \cdot \left( \prod_{i=1}^{n} \frac{\tau_0^{\beta_0}}{\Gamma(\beta_0)} \beta(s_i)^{\beta_0 - 1} e^{-\tau_0 \beta(s_i)} \right) \cdot \text{CAR}(\mu_\beta, \Sigma_\beta)
+\]
+
+\section*{Inference}
+
+Bayesian inference will be performed using Markov Chain Monte Carlo (MCMC) methods to sample from the posterior distribution of the parameters \( \alpha \) and \( \beta \). The CAR model introduces spatial dependence among the \( \beta(s_i) \) parameters,  accounting for spatial correlation in the data.
+
+
+
+\section*{Bayesian Framework for Skew-Logistic Distribution with Spatial Parameters}
+
+\subsection*{Model Specification}
+
+Consider a spatially indexed dataset \( \{(x_i, s_i) : i = 1, 2, \ldots, n\} \) where \( x_i \) represents the observed data and \( s_i \) represents the spatial location for observation \( i \). We assume that \( x_i \) follows a skew-logistic distribution parameterized by a spatially varying scale parameter \( \beta(s_i) \) and a shape parameter \( \kappa \).
+
+The probability density function (pdf) of the skew-logistic distribution is given by:
+\[
+f(x_i \mid \kappa, \beta(s_i)) = \frac{2\kappa}{\beta(s_i)(1 + \kappa^2)} \frac{e^{-\frac{x^-_i}{\kappa \beta(s_i)}}}{(1 + e^{-\frac{x^-_i}{\kappa \beta(s_i)}})^2} \cdot \frac{e^{-\frac{\kappa x^+_i}{\beta(s_i)}}}{(1 + e^{-\frac{\kappa x^+_i}{\beta(s_i)}})^2}
+\]
+where \( x^-_i = \max(-x_i, 0) \) and \( x^+_i = \max(x_i, 0) \).
+
+\subsection*{Prior Distributions}
+
+assign gamma priors to the parameters \( \kappa \) and \( \beta(s_i) \):
+\[
+\kappa \sim \text{Gamma}(\alpha_{\kappa}, \lambda_{\kappa})
+\]
+\[
+\beta(s_i) \sim \text{Gamma}(\alpha_{\beta}, \lambda_{\beta})
+\]
+
+\subsection*{Spatial Model for Scale Parameter}
+
+incorporate spatial dependence in the scale parameter \( \beta(s_i) \) using a Conditional Autoregressive (CAR) model. Let \( \beta = (\beta(s_1), \beta(s_2), \ldots, \beta(s_n)) \) be the vector of scale parameters for all spatial locations. The CAR model is specified as:
+\[
+\beta \sim \text{CAR}(\mu_\beta, \Sigma_\beta)
+\]
+where \( \mu_\beta \) is the mean vector and \( \Sigma_\beta \) is the spatial covariance matrix defined by the adjacency structure of the spatial locations.
+
+\subsection*{Posterior Distribution}
+
+The posterior distribution of the parameters given the data is proportional to the product of the likelihood and the prior distributions:
+\[
+\pi(\kappa, \beta \mid x, s) \propto \left( \prod_{i=1}^{n} \frac{2\kappa}{\beta(s_i)(1 + \kappa^2)} \frac{e^{-\frac{x^-_i}{\kappa \beta(s_i)}}}{(1 + e^{-\frac{x^-_i}{\kappa \beta(s_i)}})^2} \cdot \frac{e^{-\frac{\kappa x^+_i}{\beta(s_i)}}}{(1 + e^{-\frac{\kappa x^+_i}{\beta(s_i)}})^2} \right)
+\]
+\[
+\times \left( \frac{\lambda_{\kappa}^{\alpha_{\kappa}}}{\Gamma(\alpha_{\kappa})} \kappa^{\alpha_{\kappa} - 1} e^{-\lambda_{\kappa} \kappa} \right)
+\]
+\[
+\times \left( \prod_{i=1}^{n} \frac{\lambda_{\beta}^{\alpha_{\beta}}}{\Gamma(\alpha_{\beta})} \beta(s_i)^{\alpha_{\beta} - 1} e^{-\lambda_{\beta} \beta(s_i)} \right) \cdot \text{CAR}(\mu_\beta, \Sigma_\beta)
+\]
+
+\section*{Inference}
+
+Bayesian inference will be performed using Markov Chain Monte Carlo (MCMC) methods to sample from the posterior distribution of the parameters \( \kappa \) and \( \beta \). The CAR model introduces spatial dependence among the \( \beta(s_i) \) parameters, allowing us to account for spatial correlation in the data.
+
+
+
+
+\end{document}
+
+
+

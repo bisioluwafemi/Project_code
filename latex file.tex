@@ -1,0 +1,487 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[fleqn]{mathtools}
+\usepackage{amsmath}
+\usepackage{cases}
+\usepackage{mathtools}
+\usetheme{Madrid}
+\usecolortheme{default}
+
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title[BAYESIAN SPATIAL MODELS OF GAMMA-LOG-LOGISTIC ...] %optional
+{\textbf{BAYESIAN SPATIAL MODELS OF GAMMA-LOG-LOGISTIC DISTRIBUTION AND GAMMA-SKEW-LOGISTIC DISTRIBUTION: APPLICATION ON MEDICAL 
+ STUDIES}}
+
+%%\subtitle{A short story}
+
+\author[sadurotoye@pg-student.oauife.edu.ng] % (optional)
+{\textbf{Bisiriyu Oluwafemi Lawal}}
+
+\institute[OAU] % (optional)
+{
+  %
+  $\textbf{SCP21/22/R/0014}$
+  \and
+  A RESEARCH PROPOSITIONAL SEMINAR FOR THE DEGREE OF MASTER OF
+SCIENCE IN MATHEMATICS.
+\and
+DEPARTMENT OF MATHEMATICS, OBAFEMI AWOLOWO UNIVERSITY, ILE-IFE, NIGERIA.
+\and
+\textbf{Supervisor: Prof. A. A. Olosunde}
+  }
+
+\date[July 31, 2024] % (optional)
+{\textbf{$31st$, July 2024}}
+
+\logo{\includegraphics[height=0.8cm]{Oau logo.png}\hspace{50pt}}
+
+%End of title page configuration block
+%------------------------------------------------------------
+
+
+
+%------------------------------------------------------------
+%The next block of commands puts the table of contents at the 
+%beginning of each section and highlights the current section:
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{\textbf{OUTLINE}}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+%------------------------------------------------------------
+
+
+\begin{document}
+
+%The next statement creates the title page.
+\frame{\titlepage}
+
+
+%---------------------------------------------------------
+%This block of code is for the table of contents after
+%the title page
+\begin{frame}
+\frametitle{\textbf{OUTLINE}}
+\tableofcontents
+\end{frame}
+%---------------------------------------------------------
+
+
+\section{INTRODUCTION}
+
+%---------------------------------------------------------
+%Changing the visibility of the text
+\begin{frame}
+\frametitle{INTRODUCTION}
+Probability distributions are extensively used to describe real-world phenomena across various fields, from health to environmental science. However, the complexity and variability of certain datasets can challenge the applicability of existing models, which may fail to provide an accurate fit (Muse et al., 2021). To address this issue, it becomes necessary to develop new models tailored to these complex datasets. These models often do not exist in the current statistical literature, prompting the need for innovation.
+
+
+\end{frame}
+
+%---------------------------------------------------------
+\begin{frame}
+\frametitle{INTRODUCTION contd.}
+
+In the present article, we illustrate this approach by using Bayesian inference in conjunction with spatial models. Specifically, we construct the Bayesian gamma-log-logistic distribution and the gamma-skew-logistic distribution. These newly introduced distributions are designed to handle the unique characteristics of complex data, providing a robust framework for analysis. The Bayesian approach allows us to incorporate prior knowledge and spatial dependencies, enhancing the model's capability to capture the true nature of the data. 
+
+
+\end{frame}
+
+%---------------------------------------------------------
+
+\begin{frame}
+\frametitle{INTRODUCTION contd.}
+
+In the Bayesian framework, inference is conducted using the updated (posterior) beliefs about the parameters in a statistical model. The posterior distribution provides a summary of the probability that a parameter falls within a specified range. Bayes' theorem, which is based on the principles of conditional probabilities, is generally accepted and uncontroversial (Muse et al., 2021). The contentious aspects of Bayesian statistics revolve around whether to adopt Bayesian analysis and the necessity of specifying a prior distribution. Additionally, once Bayesian inference is chosen, there is debate on how to appropriately specify the prior distribution, \( p(\theta) \).
+
+
+\end{frame}
+
+%---------------------------------------------------------
+\begin{frame}
+\frametitle{INTRODUCTION contd.}
+Standard statistical modeling approaches are unsuitable for analyzing spatially clustered data because they assume independence between locations (Giardina et al., 2013). This assumption often leads to inaccurate inferences and predictions, as well as unreliable estimates of variability. By accounting for spatial dependence, one can achieve better inference and predictions, along with more precise estimates of the variability of the parameters (Giardina et al., 2013). Spatial models improve upon standard methods by introducing random effect parameters at each observed location or region, effectively capturing potential spatial correlations. This enhancement is crucial for the accurate analysis of spatially clustered data, ensuring that the inherent spatial relationships are appropriately modeled and understood (Giardina et al., 2013). 
+\end{frame}
+
+%---------------------------------------------------------
+
+\begin{frame}
+\frametitle{INTRODUCTION contd.}
+Survival analysis is a statistical method employed to study the duration until a particular event takes place, such as the progression of a disease or patient survival (Riedel et al., (2010). This technique is especially crucial in medical research for comprehending and forecasting disease trajectories, assessing the efficacy of treatments, and identifying factors that affect patient outcomes. When dealing with medical data, particularly disease progression, researchers often encounter skewed data.
+\end{frame}
+
+%---------------------------------------------------------
+\begin{frame}
+\frametitle{INTRODUCTION contd.}
+\textbf{Definition of Terms}
+\begin{itemize}
+
+    \item Skewness describes the asymmetry in a data distribution, where the data may be unevenly stretched towards one side. In survival data, this is often observed, with a few patients having very prolonged times until the event occurs, while the majority have shorter times.
+    \item Asymmetry in a statistical distribution signifies that the data is not evenly centered around its mean, leading to an imbalance. This can be observed as a distribution with one tail being longer or more pronounced than the other.    
+    \item Spatial dependencies denote the connections or correlations between data points that are situated near each other. In spatial statistics, this implies that the value of a variable at one location is frequently influenced by or related to the values of the same variable at adjacent locations.
+   
+\end{itemize}
+
+\end{frame}
+
+%--------------------------------------------------------
+
+\section{LITERATURE REVIEW}
+%--------------------------------------------------------
+
+\begin{frame}
+		\frametitle{\textbf{LITERATURE REVIEW}}
+  \renewcommand{\arraystretch}{1.5}
+Ousmane et al., (2009) Modelling malaria incidence with environmental dependency in a
+locality of Sudanese savannah area, Mali: The risk of Plasmodium falciparum infection varies across space and time, and this variability is linked to environmental factors that influence the biological cycles of both the vector and the parasite.  In this study, remote sensing data on environmental factors were integrated into a temporal model of malaria transmission to predict the evolution of malaria epidemiology in a Sudanese savannah locality. A dynamic cohort was established in June 1996 and followed until June 2001 in Bancoumana, Mali. The statistical relationship between NDVI and the incidence of P. falciparum infection was evaluated using ARIMA analysis. ROC analysis was used to identify an NDVI threshold for predicting increases in parasitemia incidence. Malaria transmission was modeled using an SIRS-type model tailored to Bancoumana's data. 
+
+	\end{frame}
+	
+\begin{frame}
+		\frametitle{\textbf{LITERATURE REVIEW contd.}}
+  \renewcommand{\arraystretch}{1.5}
+	Arjun et al (2020) proposed Skew Log-Logistic distribution: properties
+and application: This paper introduces a novel three-parameter skew-log-logistic distribution. The research involves developing a new random variable based on Azzalini and Capitanio’s (2013) proposition. Additionally, various statistical properties of this distribution are explored. The paper presents a maximum likelihood method for estimating the distribution’s parameters. The density function exhibits unimodality with heavy right tails, while the hazard function shows a rapid increase, unimodality, and slow decrease, resulting in a right-skewed curve. Furthermore, four real datasets are utilized to assess the applicability of this new distribution. The AIC and BIC criteria are employed to evaluate the goodness of fit, revealing that the new distribution offers greater flexibility compared to the baseline distribution.
+`	\end{frame}
+
+
+
+\begin{frame}
+		\frametitle{\textbf{LITERATURE REVIEW contd.}}
+  \renewcommand{\arraystretch}{1.5}
+	Pulkit et al., (2022) Bayesian Risk Analysis for Length Biased Log
+Logistic Distribution Under Different Loss
+Functions: The aim of this paper is to provide parametric and reliability estimation for the two-parameter length-biased log-logistic distribution under squared error, generalized exponential, linear exponential, and precautionary loss functions. Bayes estimates, obtained using non-informative priors through Lindley's approximation and Markov Chain Monte Carlo methods, are compared with classical parametric estimates. Bayesian risk analysis, based on both simulated and real datasets, is employed to demonstrate the application of the theoretical results.
+`	\end{frame}
+
+
+
+%---------------------------------------------------------
+
+\section{RESEARCH METHODOLOGY}
+
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+\frametitle{\textbf{RESEARCH METHODOLOGY}}
+
+Derivation of Posterior Distribution
+
+Let:
+\begin{itemize}
+    \item $\alpha$ be the scale parameter of the log-logistic distribution.
+    \item $\beta$ be the shape parameter of the log-logistic distribution (fixed).
+    \item $\lambda$ be the parameter of the Gamma prior distribution.
+\end{itemize}
+
+\subsection*{Prior Distribution}
+
+Assume the prior for $\alpha$ is a Gamma distribution with parameters $k$ (shape) and $\theta$ (scale):
+\[
+p(\alpha) = \frac{\alpha^{k-1} e^{-\alpha/\theta}}{\theta^k \Gamma(k)}, \quad \alpha > 0
+\]
+
+
+\end{frame}
+%----------------------------------------------------
+
+
+\begin{frame}{RESEARCH METHODOLOGY contd.}
+
+
+
+The likelihood function for $n$ independent observations $x_1, x_2, \ldots, x_n$ from a log-logistic distribution with parameters $\alpha$ and $\beta$ is:
+\[
+p(x_i | \alpha) = \frac{\left(\frac{\beta}{\alpha}\right) \left(\frac{x_i}{\alpha}\right)^{\beta-1}}{\left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^2}
+\]
+Therefore, the joint likelihood for all observations is:
+\[
+L(\alpha; x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} \frac{\left(\frac{\beta}{\alpha}\right) \left(\frac{x_i}{\alpha}\right)^{\beta-1}}{\left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^2}
+\]
+
+
+
+
+\end{frame}
+
+
+
+%-------------------------------------------------
+\begin{frame}
+
+\frametitle{RESEARCH METHODOLOGY contd.}
+Using Bayes' theorem, the posterior distribution is proportional to the product of the prior and the likelihood:
+\[
+p(\alpha | x_1, x_2, \ldots, x_n) \propto p(\alpha) \cdot L(\alpha; x_1, x_2, \ldots, x_n)
+\]
+Substituting the expressions for the prior and likelihood, we get:
+\[
+p(\alpha | x_1, x_2, \ldots, x_n) \propto \left( \frac{\alpha^{k-1} e^{-\alpha/\theta}}{\theta^k \Gamma(k)} \right) \cdot \left( \prod_{i=1}^{n} \frac{\left(\frac{\beta}{\alpha}\right) \left(\frac{x_i}{\alpha}\right)^{\beta-1}}{\left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^2} \right)
+\]
+
+
+\end{frame}
+
+%---------------------------------------------------------
+%Two columns
+\begin{frame}
+
+\frametitle{RESEARCH METHODOLOGY contd.}
+
+The Posterior is derived as:
+
+Combining the powers of $\alpha$:
+\[
+p(\alpha | x_1, x_2, \ldots, x_n) \propto \beta^n \left( \prod_{i=1}^{n} x_i^{\beta-1} \right) \alpha^{k-1-n\beta} e^{-\alpha/\theta} \cdot \left( \prod_{i=1}^{n} \left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^{-2} \right)
+\]
+
+The posterior distribution is not a standard distribution due to the product term \( \prod_{i=1}^{n} \left[1 + \left(\frac{x_i}{\alpha}\right)^{\beta}\right]^{-2} \).
+
+The actual posterior distribution derived manually do not have a simple closed form. sampling techniques (e.g., Markov Chain Monte Carlo) will be  used to work with the posteriors.
+
+
+\end{frame}
+
+
+\begin{frame}{RESEARCH METHODOLOGY contd.}
+
+To Estimate the posterior distribution of parameters \( \kappa \) and \( \beta \) given a random sample \( x = (x_1, x_2, \ldots, x_n) \) from the Skew Logistic Distribution (SLD), using Bayes' theorem. The prior distribution for \( \kappa \) and \( \beta \) will be assumed to be independent Gamma distributions. Let's denote the prior distributions as follows:
+
+\[ \kappa \sim \text{Gamma}(\alpha_{\kappa}, \lambda_{\kappa}) \]
+\[ \beta \sim \text{Gamma}(\alpha_{\beta}, \lambda_{\beta}) \]
+
+Given the likelihood function \( L \) for the Skew Logistic Distribution:
+
+\[ L(\kappa, \beta \mid x) = \frac{2\kappa}{\beta(1 + \kappa^2)} \prod_{i=1}^{n} \frac{e^{-\frac{x^-_i}{\kappa \beta}}}{(1 + e^{-\frac{x^-_i}{\kappa \beta}})^2} \cdot \frac{e^{-\frac{\kappa x^+_i}{\beta}}}{(1 + e^{-\frac{\kappa x^+_i}{\beta}})^2} \]
+
+The posterior distribution \( \pi(\kappa, \beta \mid x) \) is proportional to the product of the likelihood and the prior distributions:
+
+
+   
+
+\end{frame}
+%-------------------------------------------------
+\begin{frame}{\textbf{RESEARCH METHODOLOGY contd.}}
+
+\[ \pi(\kappa, \beta \mid x) \propto L(\kappa, \beta \mid x) \cdot \pi(\kappa) \cdot \pi(\beta) \]
+Substituting the expressions for the likelihood and the priors:
+
+\begin{equation}
+\begin{split}
+    \pi(\kappa, \beta \mid x) \propto \frac{2\kappa}{\beta(1 + \kappa^2)} \prod_{i=1}^{n} \frac{e^{-\frac{x^-_i}{\kappa \beta}}}{(1 + e^{-\frac{x^-_i}{\kappa \beta}})^2} \cdot \frac{e^{-\frac{\kappa x^+_i}{\beta}}}{(1 + \\ e^{-\frac{\kappa x^+_i}{\beta}})^2} \cdot \frac{\lambda_{\kappa}^{\alpha_{\kappa}}}{\Gamma(\alpha_{\kappa})} \kappa^{\alpha_{\kappa} - 1} e^{-\lambda_{\kappa} \kappa} \cdot \frac{\lambda_{\beta}^{\alpha_{\beta}}}{\Gamma(\alpha_{\beta})} \beta^{\alpha_{\beta} - 1} e^{-\lambda_{\beta} \beta}
+\end{split}
+\end{equation}
+
+
+\end{frame}
+%---------------------------------------------------------
+
+\begin{frame}{RESEARCH METHODOLOGY contd.}
+Therefore, the posterior distribution \( \pi(\kappa, \beta \mid x) \) is given by:
+
+\begin{equation}
+\begin{split}
+    \pi(\kappa, \beta \mid x) = \frac{2\kappa}{\beta(1 + \kappa^2)} \prod_{i=1}^{n} \frac{e^{-\frac{x^-_i}{\kappa \beta}}}{(1 + e^{-\frac{x^-_i}{\kappa \beta}})^2} \cdot \frac{e^{-\frac{\kappa x^+_i}{\beta}}}{(1 + \\ e^{-\frac{\kappa x^+_i}{\beta}})^2} \cdot \frac{\lambda_{\kappa}^{\alpha_{\kappa}}}{\Gamma(\alpha_{\kappa})} \kappa^{\alpha_{\kappa} - 1} e^{-\lambda_{\kappa} \kappa} \cdot \frac{\lambda_{\beta}^{\alpha_{\beta}}}{\Gamma(\alpha_{\beta})} \beta^{\alpha_{\beta} - 1} e^{-\lambda_{\beta} \beta}
+\end{split}
+\end{equation}
+
+This expression provides the posterior distribution of \( \kappa \) and \( \beta \) given the observed sample \( x \) from the Skew Logistic Distribution and the specified Gamma prior distributions for \( \kappa \) and \( \beta \).
+   
+
+\end{frame}
+%-------------------------------------------------
+\begin{frame}{\textbf{RESEARCH METHODOLOGY contd.}}
+
+Bayesian Framework for Log-Logistic Distribution with Spatial Parameters
+
+The posterior distribution of the parameters given the data is proportional to the product of the likelihood and the prior distributions:
+\begin{equation}
+\begin{split}
+    \pi(\alpha, \beta \mid x, s) \propto \left( \prod_{i=1}^{n} \frac{(\alpha / \beta(s_i)) (x_i / \beta(s_i))^{\alpha - 1}}{(1 + (x_i / \beta(s_i))^\alpha)^2} \right) \cdot \left( \frac{\lambda_0^{\alpha_0}}{\Gamma(\alpha_0)} \alpha^{\alpha_0 - 1} e^{-\lambda_0 \alpha} \right) \cdot \\ \left( \prod_{i=1}^{n} \frac{\tau_0^{\beta_0}}{\Gamma(\beta_0)} \beta(s_i)^{\beta_0 - 1} e^{-\tau_0 \beta(s_i)} \right) \cdot \text{CAR}(\mu_\beta, \Sigma_\beta)
+\end{split}
+\end{equation}
+
+
+
+
+\end{frame}
+%---------------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}{\textbf{RESEARCH METHODOLOGY contd.}}
+
+Bayesian Framework for skew-Logistic Distribution with Spatial Parameters: The posterior distribution of the parameters given the data is proportional to the product of the likelihood and the prior distributions:
+\[
+\pi(\kappa, \beta \mid x, s) \propto \left( \prod_{i=1}^{n} \frac{2\kappa}{\beta(s_i)(1 + \kappa^2)} \frac{e^{-\frac{x^-_i}{\kappa \beta(s_i)}}}{(1 + e^{-\frac{x^-_i}{\kappa \beta(s_i)}})^2} \cdot \frac{e^{-\frac{\kappa x^+_i}{\beta(s_i)}}}{(1 + e^{-\frac{\kappa x^+_i}{\beta(s_i)}})^2} \right)
+\]
+\[
+\times \left( \frac{\lambda_{\kappa}^{\alpha_{\kappa}}}{\Gamma(\alpha_{\kappa})} \kappa^{\alpha_{\kappa} - 1} e^{-\lambda_{\kappa} \kappa} \right)
+\]
+\[
+\times \left( \prod_{i=1}^{n} \frac{\lambda_{\beta}^{\alpha_{\beta}}}{\Gamma(\alpha_{\beta})} \beta(s_i)^{\alpha_{\beta} - 1} e^{-\lambda_{\beta} \beta(s_i)} \right) \cdot \text{CAR}(\mu_\beta, \Sigma_\beta)
+\]
+
+
+\end{frame}
+%---------------------------------------------------------
+
+%-------------------------------------------------
+\begin{frame}{\textbf{RESEARCH METHODOLOGY contd.}}
+
+Bayesian inference will be performed using Markov Chain Monte Carlo (MCMC) methods to sample from the posterior distribution of the parameters \( \alpha \) and \( \beta \). The CAR model introduces spatial dependence among the \( \beta(s_i) \) parameters,  accounting for spatial correlation in the data.
+
+\end{frame}
+%---------------------------------------------------------
+
+
+%-------------------------------------------------------
+\section{MOTIVATION AND STATEMENT OF RESEARCH PROBLEM}
+%-------------------------------------------------------
+\begin{frame}
+		\frametitle{\textbf{MOTIVATION}}
+		The motivation for this study is to develop and apply Bayesian spatial models using the gamma-log-logistic and gamma-skew-logistic distributions to enhance the analysis of medical data. By accounting for spatial dependencies and skewness in the data, these models aim to provide more accurate predictions and better understand disease progression, ultimately improving patient outcomes and treatment strategies.
+	\end{frame}
+
+\begin{frame}
+		\frametitle{\textbf{STATEMENT OF RESEARCH PROBLEM}}
+		
+		In medical research, accurately modeling and analyzing spatial data is crucial for understanding the underlying patterns and relationships in health-related phenomena. Traditional statistical methods often fall short in capturing complex spatial dependencies and distributions observed in medical studies. Bayesian spatial models, particularly those incorporating gamma-log-logistic and gamma-skew-logistic distributions, offer a promising approach to address these limitations by providing a flexible framework for modeling spatial variability and skewness. 
+		
+	\end{frame}
+
+
+
+
+\begin{frame}
+		\frametitle{\textbf{STATEMENT OF RESEARCH PROBLEM}}
+		However, the application of Bayesian spatial models, specifically gamma-log-logistic and gamma-skew-logistic distributions, in medical studies remains underexplored. There is a need to assess how these advanced models perform in terms of fitting spatial data and handling skewness in medical contexts. 
+		
+	\end{frame}
+
+
+%-----------------------------------------
+\section{AIM OF RESEARCH}
+%-------------------------------------------------------
+\begin{frame}
+		\frametitle{\textbf{AIM OF RESEARCH}}
+		The aim of this research is to evaluate and enhance the application of Bayesian spatial models using gamma-log-logistic and gamma-skew-logistic distributions for analyzing spatial data in medical studies, with a focus on improving model accuracy and insights into spatial dependencies and skewness.
+		
+	\end{frame}
+
+%-----------------------------------------
+\section{SPECIFIC OBJECTIVES OF RESEARCH}
+%-------------------------------------------------------
+\begin{frame}
+		\frametitle{\textbf{SPECIFIC OBJECTIVES OF RESEARCH}}
+		The specific objectives of the research are to \\
+		
+			\begin{itemize}
+\item[1.] Develop and implement Bayesian spatial models incorporating gamma-log-logistic and gamma-skew-logistic distributions for medical data.
+   
+\item[2.] Apply the developed models to real medical datasets to analyze spatial patterns and relationships.
+
+\item[3.] Derive insights from the model outputs regarding spatial dependencies, skewness, and other relevant characteristics of the medical data.
+
+
+\end{itemize}
+		
+	\end{frame}
+
+
+
+
+
+%-------------------------------------------------------
+\section{EXPECTED CONTRIBUTION TO KNOWLEDGE}
+%----------------------------------------------------
+\begin{frame}
+		\frametitle{\textbf{EXPECTED CONTRIBUTIONS TO KNOWLEDGE}}
+		This study is expected to contribute to knowledge by developing advanced Bayesian spatial models based on the gamma-log-logistic and gamma-skew-logistic distributions, improving the analysis and prediction of disease progression, informing better treatment strategies, validating these models with real medical datasets, and enhancing biostatistical methods for complex medical data.	
+	\end{frame}
+
+
+
+%-------------------------------------------------------
+\section{REFERENCES}
+%----------------------------------------------------
+\begin{frame}
+	\frametitle{\textbf{REFERENCES}}
+\begin{center}
+	\begin{thebibliography}{99}
+	\bibitem {9} Giardina, F. (2013) Bayesian spatial models applied to malaria epidemiology. https://doi.org/10.5451/unibas-006503320.
+        \bibitem {1}Muse, A.H. et al. (2021) 'Bayesian and Classical Inference for the Generalized Log-Logistic Distribution with Applications to Survival Data,' Computational Intelligence and Neuroscience, 2021, pp. 1–24. https://doi.org/10.1155/2021/5820435.
+18(1):339–350.
+        \bibitem {10} Gaudart, J. et al. (2009) 'Modelling malaria incidence with environmental dependency in a locality of Sudanese savannah area, Mali,' Malaria Journal, 8(1). https://doi.org/10.1186/1475-2875-8-61.
+  
+	\bibitem{2}  Riedel, N. et al. (2010) 'Geographical patterns and predictors of malaria risk in Zambia: Bayesian geostatistical modelling of the 2006 Zambia national malaria indicator survey (ZMIS),' Malaria Journal, 9(1). https://doi.org/10.1186/1475-2875-9-37.
+
+
+
+
+
+	
+	
+			
+		 
+			
+\end{thebibliography}
+\end{center}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\textbf{REFERENCES contd.}}
+\begin{center}
+	\begin{thebibliography}{99}
+
+        \bibitem {4}  Akhtar, T. and Khan, A.A. (2014) 'Log-Logistic Distribution as a Reliability model: A Bayesian analysis,' American Journal of Mathematics and Statistics, 4(3), pp. 162–170. http://www.sapub.org/global/showpaperpdf.aspx?doi=10.5923/j.ajms.20140403.05.
+	\bibitem {5} Muse, A.H. et al. (2021b) 'Bayesian and Classical Inference for the Generalized Log-Logistic Distribution with Applications to Survival Data,' Computational Intelligence and Neuroscience, 2021, pp. 1–24. https://doi.org/10.1155/2021/5820435.
+
+\bibitem{7} Chaudhary, A.K. (2020) 'Bayesian Analysis of Two-Parameter Exponentiated Log-Logistic Distribution,' Pravaha, 25(1), pp. 1–12. https://doi.org/10.3126/pravaha.v25i1.31864.
+
+
+		
+			
+\end{thebibliography}
+\end{center}	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{\textbf{REFERENCES contd.}}
+\begin{center}
+	\begin{thebibliography}{99}
+
+        \bibitem {11}  Para, B.A. and Jan, T.R. (2017) 'Transmuted Inverse Loglogistic Model: Properties and application in medical sciences and engineering,' Mathematical Theory and Modeling, 7(6), pp. 157–181. https://iiste.org/Journals/index.php/MTM/article/download/37694/38778.
+
+        \bibitem {12} Tibshirani, R. (1996) 'Regression shrinkage and selection via the lasso,' Journal of the Royal Statistical Society. Series B. Methodological, 58(1), pp. 267–288. https://doi.org/10.1111/j.2517-6161.1996.tb02080.x.
+
+        \bibitem {13} Kleinschmidt, I. (2001) Spatial statistical analysis, modelling and mapping of malaria in Africa. https://doi.org/10.5451/unibas-002453995.
+
+       .\\
+
+		
+			
+\end{thebibliography}
+\end{center}	
+\end{frame}
+
+
+\begin{frame}
+		
+		\begin{center}
+			{{\Huge { \textbf{THANKS FOR LISTENING!! .}}} \\~\\ }
+		\end{center} 
+		
+	\end{frame}		
+
+
+
+
+
+
+\end{document}
